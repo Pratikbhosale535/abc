@@ -1,7 +1,8 @@
 import { Router } from "express";
+import { createNewCustomer, getCustomerById, getCustomers } from "./controller";
+
 const router = Router();
 //const Customer = require("../models/customer");
-import { createNewCustomer, getCustomerById, getCustomers } from "./controller";
 
 router.post("/", (req, res) => {
   createNewCustomer(req.body)

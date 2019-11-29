@@ -3,29 +3,24 @@ import Account, { findById, find, findByIdAndUpdate } from "../models/account";
 //   const newAccount = new Account(account);
 //   return newAccount.save();
 // };
-const createNewAccount = async account => {
+export const createNewAccount = async account => {
   const newAccount = new Account(account);
   let createdAccount = await newAccount.save();
   return createdAccount.populate("customer").execPopulate();
 };
 
-const getAccountById = id => {
-  return findById(id);
+export const getAccountById = id => {
+  return Account.findById(id);
 };
 
-const getAccounts = () => {
-  return find();
+export const getAccounts = () => {
+  return Account.find();
 };
 
-const updateBalance = (id, amount) => {
-  return findByIdAndUpdate(id, {
+export const updateBalance = (id, amount) => {
+  return Account.findByIdAndUpdate(id, {
     $inc: {
       balance: amount
     }
   });
 };
-
-export const createNewAccount = createNewAccount;
-export const getAccountById = getAccountById;
-export const getAccounts = getAccounts;
-export const updateBalance = updateBalance;

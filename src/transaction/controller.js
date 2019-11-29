@@ -17,7 +17,7 @@ import { updateBalance } from "../account/controller";
 //   return newTransaction.save();
 // };
 
-const createNewTransaction = async transaction => {
+export const createNewTransaction = async transaction => {
   const newTransaction = new Transaction(transaction);
   let createdTransaction = await newTransaction.save();
   if (transaction.type == "debit") {
@@ -28,14 +28,14 @@ const createNewTransaction = async transaction => {
   return createdTransaction.populate("account").execPopulate();
 };
 
-const getTransactionById = id => {
-  return findById(id);
+export const getTransactionById = id => {
+  return Transaction.findById(id);
 };
 
-const getTransactions = () => {
-  return find();
+export const getTransactions = () => {
+  return Transaction.find();
 };
 
-export const createNewTransaction = createNewTransaction;
-export const getTransactionById = getTransactionById;
-export const getTransactions = getTransactions;
+//export  const createNewTransaction = createNewTransaction;
+// export const getTransactionById = getTransactionById;
+// export const getTransactions = getTransactions;
