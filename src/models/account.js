@@ -1,5 +1,5 @@
 //const mongoose = require("mongoose");
-const { model, Schema } = require("mongoose");
+import { model, Schema } from "mongoose";
 const accountschema = Schema({
   type: {
     type: String,
@@ -22,4 +22,4 @@ const accountschema = Schema({
 });
 
 const accountmodel = model("account", accountschema);
-module.exports = accountmodel;
+export default accountmodel;

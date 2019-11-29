@@ -1,12 +1,12 @@
-const { Router } = require("express");
+import { Router } from "express";
 const router = Router();
 //const Customer = require("../models/customer");
-const {
+import {
   createNewTransaction,
   getTransactionById,
   getTransactions,
   getgetTransUpdate
-} = require("./controller");
+} from "./controller";
 
 router.post("/", (req, res) => {
   createNewTransaction(req.body)
@@ -43,4 +43,4 @@ router.get("/:id", (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;

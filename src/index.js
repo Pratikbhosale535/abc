@@ -12,17 +12,17 @@
 
 // app.listen(3000);
 
-const express = require("express");
-const parser = require("body-parser");
+import express from "express";
+import { json, urlencoded } from "body-parser";
 const app = express();
-const mongoose = require("mongoose");
-const customerRouter = require("./customer/routes");
-const accountRouter = require("./account/routes");
-const transactionRouter = require("./transaction/routes");
-app.use(parser.json({}));
+import { connect } from "mongoose";
+import customerRouter from "./customer/routes";
+import accountRouter from "./account/routes";
+import transactionRouter from "./transaction/routes";
+app.use(json({}));
 
 app.use(
-  parser.urlencoded({
+  urlencoded({
     extended: false
   })
 );
@@ -36,11 +36,10 @@ app.use("/transaction", transactionRouter);
 // });
 // app.listen(3000);
 
-mongoose
-  .connect(
-    "mongodb+srv://root:root@cluster0-vrehy.mongodb.net/test?retryWrites=true&w=majority",
-    { useCreateIndex: true, useUnifiedTopology: true, useNewUrlParser: true }
-  )
+connect(
+  "mongodb+srv://root:root@cluster0-vrehy.mongodb.net/test?retryWrites=true&w=majority",
+  { useCreateIndex: true, useUnifiedTopology: true, useNewUrlParser: true }
+)
   .then(res => {
     console.log("database connected");
     app.listen(3000);
