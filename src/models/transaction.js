@@ -1,6 +1,8 @@
 import { model, Schema } from "mongoose";
 
-const transactionschema = Schema({
+import { composeWithMongoose } from "graphql-compose-mongoose";
+
+const transactionSchema = Schema({
   type: {
     type: String,
     required: true,
@@ -22,5 +24,8 @@ const transactionschema = Schema({
   }
 });
 
-const transactionmodel = model("transaction", transactionschema);
-export default transactionmodel;
+const transactionModel = model("transaction", transactionSchema);
+export default transactionModel;
+
+// export default model = model("transaction", transactionSchema);
+export const TransactionTc = composeWithMongoose(transactionModel);

@@ -1,6 +1,7 @@
 //const mongoose = require("mongoose");
 import { model, Schema } from "mongoose";
-const accountschema = Schema({
+import { composeWithMongoose } from "graphql-compose-mongoose";
+const accountSchema = Schema({
   type: {
     type: String,
     required: true,
@@ -21,5 +22,7 @@ const accountschema = Schema({
   }
 });
 
-const accountmodel = model("account", accountschema);
-export default accountmodel;
+const accountModel = model("account", accountSchema);
+export default accountModel;
+// export default model = model("account", accountSchema);
+export const AccountTc = composeWithMongoose(accountModel);
